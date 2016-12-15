@@ -11,15 +11,30 @@ class JokesAPI {
         $this->http = $http;
     }
 
-    public function randomJoke() {
-        $jokesData = json_decode(
+    private function getJokesJson() {
+        $json = json_decode(
             $this->http->request("GET", self::URL)->getBody(),
             true
         );
 
+        return $json;
+    }
+
+    public function getAllJokes() {
+        $jokesData = $this->getJokesJson();
+
+        $jokes = [];
+        foreach ($jokesData as $joke) {
+            array_push($jokes, $joke['content']);
+        }
+
+        return $jokes;
+    }
+
+    public function randomJoke() {
+        $jokesData = getJokesJson();
+
         $randJoke = rand()%10;
-
-
 
         return $jokesData[$randJoke];
     }
