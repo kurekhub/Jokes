@@ -11,7 +11,7 @@ class JokesAPI {
         $this->http = $http;
     }
 
-    public function getJokes() {
+    public function randomJoke() {
         $jokesData = json_decode(
             $this->http->request("GET", self::URL)->getBody(),
             true

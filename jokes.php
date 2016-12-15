@@ -8,4 +8,4 @@ $http = new \GuzzleHttp\Client();
 
 $jokes = new JokesAPI($http);
 
-echo "<p>".$jokes->getJokes()["content"]."</p>";
+echo "<p>".$jokes->randomJoke()["content"]."</p>";
